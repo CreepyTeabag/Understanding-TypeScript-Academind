@@ -1,0 +1,26 @@
+TypeScript is a JavaScript superset. TypeScript can't be executed by the environments that execute JS. It's compiled into JS. It gives us extra error checking.
+In JS you can add 'if' checks, you can validate and sanitize user inputs, but it can be quite cumbersome and developers can still write invalid code.
+
+17:28
+tsc <filename.ts> will compile the TS file into JS file and throw errors if it encounters any.
+
+20:15
+TypeScript add types, allows to use IDE's automatic error recognition even before compiling. We can also use next-gen JS features (compiled down for older browsers). We also get non-JS features like Interfaces or Generics. It also gives us meta-programming features like Decorations. It has rich configuration options. It also has modern tooling that helps even in non-TS projects.
+
+41:18
+Core Syntax & Features
+number 
+   1, 5.3, -10 
+   All numbers, no differentiation between integers or floats.
+string 
+   'Hi', "Hi", `Hi` 
+   All text values
+boolean 
+   true / false
+   Just these two, no 'truthy' or 'falsy' values.
+
+50:30
+TypeScript's type system only helps you during development (i.e before the code gets compiled)
+
+56:04
+the key difference between TS and JS is that JavaScript uses "dynamic types" (resolved at runtime), TypeScript uses "static types" (set during development)
