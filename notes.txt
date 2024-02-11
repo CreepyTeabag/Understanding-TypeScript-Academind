@@ -7,7 +7,7 @@ tsc <filename.ts> will compile the TS file into JS file and throw errors if it e
 20:15
 TypeScript add types, allows to use IDE's automatic error recognition even before compiling. We can also use next-gen JS features (compiled down for older browsers). We also get non-JS features like Interfaces or Generics. It also gives us meta-programming features like Decorations. It has rich configuration options. It also has modern tooling that helps even in non-TS projects.
 
-41:18
+41:18 & 1:08:08
 Core Syntax & Features
 number 
    1, 5.3, -10 
@@ -18,9 +18,68 @@ string
 boolean 
    true / false
    Just these two, no 'truthy' or 'falsy' values.
+object
+   {age: 30}
+   Any JavaScript object, more specific types (type of object) are possible
+Array
+   [1, 2, 3]
+   Any JavaScript array, type can be flexible or strict (regarding the element types)
+Tuple
+   [1, 2]
+   Added by TypeScript: fixed-length array.
+Enum
+   enum { NEW, OLD }
+   Added by TypeScript: Automatically enumerated global constant identifiers
+Any 
+   *
+   Any kind of value, no specific type assignment
 
 50:30
 TypeScript's type system only helps you during development (i.e before the code gets compiled)
 
 56:04
 the key difference between TS and JS is that JavaScript uses "dynamic types" (resolved at runtime), TypeScript uses "static types" (set during development)
+
+1:05:30
+If we wrote something like this:
+   const number1 = 5;
+then we don't have to specify the the type number1:number, because it's redundant, because const won't change anyway. TS will automatically infer the type.
+But it does make sense to write it like this:
+   let number1: number;
+   <... some code...>
+   number1 = 5;
+
+1:12:00
+const person: object = {
+  name: "Sophie",
+  age: 26,
+};
+
+We can't set type :object, because type "object" does not have any properties. So we need to be more specific, or TS will throw an error.
+
+With objects it's best to just let TS infer the type of object based on its initial value.
+
+1:25:10
+A tuple is an array of fixed length and with each element set to a specific type. We can push into a tuple, though.
+
+1:31:30
+enum is a custom type. It is usually written with a capital letter. Basically enum allows to create a fixed set of elements that are connected to any other value (usually a number). So in this enum:
+   enum Role {
+   ADMIN,
+   READ_ONLY,
+   AUTHOR,
+   }
+   ADMIN = 0
+   READ_ONLY = 1
+   AUTHOR = 2
+
+Or you can set the value manually and TS will start counting from you value:
+   enum Role {
+   ADMIN = 5,
+   READ_ONLY,
+   AUTHOR,
+   }
+   ADMIN = 5
+   READ_ONLY = 6
+   AUTHOR = 7
+You can assign values to all of the identifiers, too.
