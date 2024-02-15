@@ -33,6 +33,9 @@ Enum
 Any 
    *
    Any kind of value, no specific type assignment
+Union types
+   number | string
+   Multiple possible types for one variable. 
 
 50:30
 TypeScript's type system only helps you during development (i.e before the code gets compiled)
