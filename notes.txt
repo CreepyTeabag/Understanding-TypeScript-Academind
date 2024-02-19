@@ -88,3 +88,8 @@ Or you can set the value manually and TS will start counting from you value:
    READ_ONLY = 6
    AUTHOR = 7
 You can assign values to all of the identifiers, too.
+
+1:52:37
+We can store a union type in a custom type like this:
+   type Combinable = number | string;
+It's called type aliases.
