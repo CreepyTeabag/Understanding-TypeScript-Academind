@@ -38,6 +38,8 @@ Union types
    Multiple possible types for one variable.
 Literal types
    2.8, "word"
+Function type
+   () => number
 
 50:30
 TypeScript's type system only helps you during development (i.e before the code gets compiled)
@@ -93,3 +95,18 @@ You can assign values to all of the identifiers, too.
 We can store a union type in a custom type like this:
    type Combinable = number | string;
 It's called type aliases.
+
+1:55:55
+We can set the type of return value from a function like this:
+   function add(n1: number, n2: number): number {
+      return n1 + n2;
+   }
+But quite often it's not necessary: TS can infer the type by itself.
+TypeScript haas a special type :void. It's used to show that a function doesn't return any value.
+We should use "void" when we don't have a return statement. And we can use both "void" and "undefined" if we have an empty return statement.
+
+2:05:10
+Function type can be set like this:
+   let combineValues: (a: number, b: number) => number;
+Which means that combineValues will any function that takes two parameters, both of which are numbers and it returns a number.
+Parameters' names don't have to match the parameters names from the function that we're going to assign to combineValues.
