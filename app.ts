@@ -1,16 +1,7 @@
-let userInput: unknown;
-let userName: string;
+const button = document.querySelector("button")!;
 
-userInput = 5;
-userInput = "Max";
-// userName = userInput; // error
-if (typeof userInput === "string") {
-  userName = userInput;
-}
+button.addEventListener("click", () => {
+  console.log("Clicked!");
+});
 
-function generateError(message: string, code: number): never {
-  throw { message: message, errorCode: code };
-  // while (true) {}
-}
-
-generateError("An error occurred!", 500);
+const map = new Map();

@@ -117,3 +117,56 @@ Parameters' names don't have to match the parameters names from the function tha
 
 2:10:12
 If we set function return type to void we can still return something from the function. But the code will ignore it
+
+2:23:05
+To watch and autocompile whenever a change occurs in a file, we can use "tsc app.ts --watch" or "tsc app.ts -w" command in the terminal.
+
+2:25:30
+"tsc --init" will initialize the project so TS will know that it need to compile all of the ts files.
+Running "tsc -w" after that will watch all of the files in the project.
+
+2:29:40
+In tsconfig.json file we can specify any files and folders that we don't want to compile.
+Alternatively, we can set the files that we do want to compile, while ignoring everything else:
+{
+  "compilerOptions": {
+    *some options*
+  },
+  "exclude": [
+      "Part_1/",
+      "**/*.dev.ts",
+      "node_modules" // would be the default anyway
+   ],
+
+   // OR
+
+   "include": [
+      "app.ts"
+   ]
+}
+
+All the files in "exclude" are ignored, so basically we compile all "include" files minus all the "exclude" files.
+We can also set 
+   "files": []
+With "files" you can't specify folder, only single files. That can be convenient for small projects.
+
+2:37:00
+tsconfig.json file options:
+"target": "es2016" - set the version of JS that TS is going ot be transpiled to.
+"lib": [], - allows you to specify which default objects and features TS knows (like working with the DOM). 
+For example, you wouldn't want to use something like "document.querySelector" in code, if you're writing something in node.js.
+If we don't use "lib", then TS will use everything included in the chosen version of JS by default. 
+By default it's like this:
+   "lib": [
+      "DOM",
+      "ES6",
+      "DOM.Iterable",
+      "ScriptHost"
+    ]
+Otherwise we have to uncomment it and specify exactly what we want to be included.
+
+"allowJs": true, - this will make TS compile JS files, too.
+"checkJs": true, - this will check JS for any potential errors and wil throw errors.
+"allowJs" and "checkJs" can be used in projects where you don't want ot use TS but still want to use some of its features.
+
+"sourceMap": true - allows us to see both compiled .js files and initial .ts files in DevTools in the Sources tab. It'll also create .js.map files in the project (they're needed to link initial and final files)
