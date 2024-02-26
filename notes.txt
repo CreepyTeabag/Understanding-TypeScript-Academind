@@ -40,6 +40,10 @@ Literal types
    2.8, "word"
 Function type
    () => number
+Unknown
+   Unknown is more restrictive than any. It doesn't disable the type checking.
+Never 
+   Function type that is used whaen a function doesn't even return an "undefined" value. For example, when we throw an error or when we have an infinite loop inside of the function.
 
 50:30
 TypeScript's type system only helps you during development (i.e before the code gets compiled)
@@ -110,3 +114,6 @@ Function type can be set like this:
    let combineValues: (a: number, b: number) => number;
 Which means that combineValues will any function that takes two parameters, both of which are numbers and it returns a number.
 Parameters' names don't have to match the parameters names from the function that we're going to assign to combineValues.
+
+2:10:12
+If we set function return type to void we can still return something from the function. But the code will ignore it
