@@ -170,3 +170,32 @@ Otherwise we have to uncomment it and specify exactly what we want to be include
 "allowJs" and "checkJs" can be used in projects where you don't want ot use TS but still want to use some of its features.
 
 "sourceMap": true - allows us to see both compiled .js files and initial .ts files in DevTools in the Sources tab. It'll also create .js.map files in the project (they're needed to link initial and final files)
+
+"outDir": "./dist" - here we can specify the directory where all of the output files will be created. This also preserves the folder structure (so TS will create the same folders in dist/ as in src/)
+
+"rootDir": "./src" - works a bit like the "include" option. But the point is that it ignores all the files outside of this root directory and won't look at the structure af the files outside of this root directory.
+
+"removeComments": true, - removes all the comments in the output file.
+
+"noEmit": true, - will not create any JS files. Can be used when you're only using TS to check your code, but not to actually compile it.
+
+"downlevelIteration": true, - sometimes TS can compile FOR loops with errors. This option will fix that, but it's best to use this option only when needed, because the code it creates might be less performant. 
+
+"noEmitOnError": true, - stops TS from creating a JS file if there's an error.
+
+"strict": true - basically enables all of these:
+   "noImplicitAny": true, - it ensures that we have to be clear about the values we're working with. We have to set the type for parameters in functions. We don't have to specify the type of variables if TS can infer the type;
+   "strictNullChecks": true, - it tells TS to be how to work with values that might potentially hold a null value.
+   "strictFunctionTypes": true, 
+   "strictBindCallApply": true, - checks that the arguments for 'bind', 'call', and 'apply' methods match the original function
+   "strictPropertyInitialization": true, 
+   "noImplicitThis": true,
+   "alwaysStrict": true - JS files use strict mode.
+
+To avoid strict null check, we can use an "!" like this: document.querySelector("button")!
+The "!" will tel TS that the button definitely exist and that it should complain about possible null value here.
+
+"noUnusedLocals": true, - throws an error if declare a local variable and don't use it. It ignores global variables, though.
+"noUnusedParameters": true, - throws an error if declare a parameter in a function that's not used.
+"noImplicitReturns": true, - throws an error if TS sees that function will possibly not have an explicit return. Basically if your function ever returns something, you have to make sure it always return something. 
+"exactOptionalPropertyTypes": true,
