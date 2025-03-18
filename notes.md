@@ -151,3 +151,20 @@ type Person = {
 - `noUnusedLocals` - ругается на неиспользуемую локальную переменную.
 - `noUnusedParameters` - ругается на неиспользуемые параметры функции.
 - `noImplicitReturns` - ругается, если функция иногда возвращает значение, а иногда - нет.
+
+## 05. Classes & Interfaces
+
+### 02. What are Classes
+
+Objects VS Classes
+Objects:
+
+- The things you work with in code
+- Instances of classes (= based on classes)
+- Class-based creation is an alternative to using object literals
+
+Classes:
+
+- "Blueprints for objects" (theoretical definition)
+- Define how objects look like, which properties and methods they have.
+- Classes make creation of multiple, similar objects much easier.
