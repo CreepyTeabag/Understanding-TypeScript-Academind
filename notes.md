@@ -168,3 +168,39 @@ Classes:
 - "Blueprints for objects" (theoretical definition)
 - Define how objects look like, which properties and methods they have.
 - Classes make creation of multiple, similar objects much easier.
+
+### 06. private and public Access Modifiers
+
+В TypeScript можно делать свойства и методы класса приватными при помощи ключевого слова `private`. Тогда, например, нельзя будет напрямую их изменить - нужно будет специально предназначенный для этого публичный метод.
+Для публичных свойств и методом можно указать `public`, но это не обязательно, т.к. они и так являются публичными по умолчанию.
+
+### 07. Shorthand Initialization
+
+Инициализировать поля можно по-разному. Полный способ:
+
+```
+  class Department {
+    private readonly id: string;
+    public name: string; // field of a class
+
+    constructor(id: string, n: string) {
+    this.id = id;
+    this.name = n;
+    }
+    ...
+  }
+```
+
+Короткий способ:
+
+```
+  class Department {
+    constructor(private readonly id: string, public name: string) {
+    }
+    ...
+  }
+```
+
+### 08. readonly Properties
+
+Свойства могут также объявляться как `readonly` - и тогда их нельзя будет изменить после инициализации.
