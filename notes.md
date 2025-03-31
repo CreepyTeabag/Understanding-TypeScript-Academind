@@ -266,3 +266,43 @@ interface Person {
     }
   }
 ```
+
+### 19. Readonly Interface Properties
+
+И в типе, и в интерфейсе можно указать `readonly`:
+
+```
+interface Greetable {
+  readonly name: string;
+}
+```
+
+Тогда это свойство можно будет указать лишь один раз, и нельзя будет изменить потом
+
+### 20. Extending Interfaces
+
+Один интерфейс может включать в себя свойства другого интерфейса. Например:
+
+```
+interface Named {
+  readonly name: string;
+}
+
+interface Greetable extends Named {
+  greet(phrase: string): void;
+}
+```
+
+Тут интерфейс Greetable будет включать в себя и name, и greet.
+Это удобно, потому что обычный класс не может наследовать от нескольких других классов. Но класс может использовать несколько интерфейсов или один интерфейс, который расширяет другие интерфейсы.
+
+### 21. Interfaces as Function Types
+
+Функцую можно описать двумя способами: через тип и через интерфейс. Синтаксис следующий:
+`type AddFn = (a: number, b: number) => number;`
+
+```
+interface AddFn {
+  (a: number, b: number): number;
+}
+```
