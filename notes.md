@@ -306,3 +306,21 @@ interface AddFn {
   (a: number, b: number): number;
 }
 ```
+
+## 06
+
+### 02. Intersection Types
+
+Пересечение (Intersection Types) - это объединение двух типов в один:
+`type ElevatedEmployee = Admin & Employee;`
+В целом можно было бы достичь аналогичного результата при помощи расширения типов:
+`interface ElevatedEmployee extends Admin, Employee {}`
+
+При этом это работает не только с объектами. Например:
+
+```
+type Combinable = string | number;
+type Numberic = number | boolean;
+
+type Universal = Combinable & Numberic; // number, потому что это единственное пересечение между этими типами
+```
