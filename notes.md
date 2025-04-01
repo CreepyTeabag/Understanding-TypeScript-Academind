@@ -307,7 +307,7 @@ interface AddFn {
 }
 ```
 
-## 06
+## 06. Advanced Types
 
 ### 02. Intersection Types
 
@@ -323,4 +323,66 @@ type Combinable = string | number;
 type Numberic = number | boolean;
 
 type Universal = Combinable & Numberic; // number, потому что это единственное пересечение между этими типами
+```
+
+### 03. More on Type Guards
+
+Защита типа (Type Guard) - это проверка типа переменной при помощи ключевого слова typeof. Например:
+
+```
+if (typeof a === "string") {
+  ...
+}
+```
+
+При помощи typeof проверять можно только типы, встроенные в JavaScript.
+
+Если же нужна проверка на какой-то ключ объекта, то можно использовать такой способ:
+
+```
+if ("privileges" in emp) {
+  console.log("Privileges: " + emp.privileges);
+}
+```
+
+А для классов также можно использовать instanceof:
+
+```
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+  if (vehicle instanceof Truck) {
+    vehicle.loadCargo(1000);
+  }
+}
+```
+
+### 04. Discriminated Unions
+
+Дискриминантное объединение (Discriminated Unions) - это паттерн, позволяющий определять тип объекта. Для этого в необходимые объекты добавляются свойства с одинаковым названием, но разными значениями. И по ним уже происходит проверка:
+
+```
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log("Moving with speed: " + speed);
+}
 ```
