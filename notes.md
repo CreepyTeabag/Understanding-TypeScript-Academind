@@ -463,3 +463,70 @@ function add(a: string, b: string): string;
 ```
 
 то TypeScript будет кидать ошибку, если в функцию передадут аргументы разного типа.
+
+## 07. Generics
+
+### 02. Built-in Generics & What are Generics
+
+Дженерики (Generics,Generic types) зачастую можно определить по использованию `<T>`
+Дженерик - это тип, как бы связанный с каким-то другим типом, и при этом он очень гибок касательно того, какой именно этот другой тип.
+
+Например, массив - это на самом деле дженерик, т.к. массив - это тип данных, но внутри себя содержит другие данные, имеющие другой тип.
+Синтаксис: `Array<string>` - это то же самое, что и `string[]`
+Дженерик может использоваться для промисов. Это удобный способ указать, какой именно тип данных вернёт промис:
+
+```
+const promise: Promise<string> = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("This is done!");
+  }, 2000);
+});
+
+```
+
+### 03. Creating a Generic Function
+
+Пример объявления функции при помощи дженерика:
+
+```
+function merge<T, U>(objA: T, objB: U) {
+  return {
+    ...objA,
+    ...objB,
+  };
+}
+```
+
+Тут Typescript сможет определить, что возвращаемое значение будет пересечением типов T и U, какими бы они ни были.
+
+```
+const mergedObj = merge({ name: "Sophie" }, { age: 27 });
+```
+
+у mergedObj тип будет {name: string;} & {age: number;}
+
+Также уже при вызове функции можно указать, какие типы будут переданы:
+
+```
+const mergedObj2 = merge<Person, Profession>(
+  { name: "Sophie" },
+  { profession: "web developer" }
+);
+```
+
+### 04. Working with Constraints
+
+Проблема с примером `function merge<T, U>(objA: T, objB: U) {...}` состоит в том, что в данную функцию можно будет передать и не объект и TypeScript не кинет ошибку, т.к. мы совсем не указываем никаких ограничений.
+Исправить это можно так:
+
+```
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return {
+    ...objA,
+    ...objB,
+  };
+}
+
+```
+
+`T extends object` означает, что аргумент будет любым объектом.
