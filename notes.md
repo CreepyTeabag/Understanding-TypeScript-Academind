@@ -386,3 +386,80 @@ function moveAnimal(animal: Animal) {
   console.log("Moving with speed: " + speed);
 }
 ```
+
+### 05. Type Casting
+
+Приведение типов (Type Casting) - это явное обозначение (преобразование) одного типа в другой. Есть два равнозначных способа приведения типа:
+
+```
+const userInputElement = <HTMLInputElement>(
+  document.getElementById("user-input")!
+);
+
+const userInputElement2 = document.getElementById(
+  "user-input"
+)! as HTMLInputElement;
+```
+
+Для того, чтобы указать TypeScript-у, что значение точно не равно null, используется восклицательный знак `!`. Часто это бывает полезным при взаимодействии с DOM-элементами, когда мы точно знаем, что элемент существует, но TypeScript этого не знает. Если же мы сами не уверены точно, существует ли элемент, можно выполнять проверку и использовать приведение типа так:
+
+```
+const userInputElement = document.getElementById("user-input");
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there!";
+}
+
+```
+
+### 06. Index Properties
+
+Индексные члены (динамические ключи, index properties) - это возможность создавать более гибкий тип объекта.
+
+```
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+```
+
+В объекте типа ErrorContainer может содержаться любое количество пар ключ-значение, но каждый ключ и каждое значение должно быть строкой.
+Также можно добавить другие ключи, если мы точно знаем их название, но их значение должно соответствовать аннотации типа из индексной сигнатуры
+
+```
+interface ErrorContainer {
+  id: number; // error, has to be string
+  name: string; // OK
+  [prop: string]: string;
+}
+
+```
+
+При этом указывая [prop: string] мы позволяем ключам также быть и числами, т.к. числа можно провести к строке. А вот если мы укажем [prop: number], то ключи должны будут быть строго числами.
+
+### 07. Function Overloads
+
+Перегрузка функций (Function Overloads) - это способ более точно описать типы аргументов функции и тип возвращаемого значения. Это помогает избавиться от неоднозначности и сузить количество разрешённых типов. Например:
+
+```
+type Combinable = string | number;
+
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+```
+
+Так мы точно определяем, какое значение будет возвращено. При этом необязательно прописывать все возможные комбинации, если они нам не нужны. Например, если указать только
+
+```
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+```
+
+то TypeScript будет кидать ошибку, если в функцию передадут аргументы разного типа.
