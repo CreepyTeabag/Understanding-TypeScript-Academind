@@ -576,3 +576,19 @@ interface CourseGoal {
 const names: Readonly<string[]> = ["Sophie", "Max"];
 // names.push("Manuel"); // error
 ```
+
+## 08. Decorators
+
+### 01. Module Introduction
+
+Декораторы нужны для того, чтобы помогать разработчикам писать более понятный для других разработчиков код.
+
+### 02. A First Class Decorator
+
+Для того, чтобы использовать декораторы в коде, в tsconfig.json нужно указать следующее:
+
+```
+"target": "es6",
+...
+"experimentalDecorators": true
+```
