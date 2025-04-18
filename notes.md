@@ -530,3 +530,49 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
 ```
 
 `T extends object` означает, что аргумент будет любым объектом.
+
+### 06. The keyof Constraint
+
+Для того, чтобы убедиться, что мы можем использовать только ключи, действительно существующие в объекте, можно использовать `extends keyof`:
+
+```
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return "Value:" + obj[key];
+}
+```
+
+### 09. Generic Utility Types
+
+В TypeScript-е есть свои встроенные типы. Например, может быть удобен тип `Partial<>`:
+
+```
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+let courseGoal: Partial<CourseGoal> = {};
+```
+
+В данном примере `courseGoal` фактически становится такого типа:
+
+```
+interface CourseGoal {
+  title?: string;
+  description?: string;
+  completeUntil?: Date;
+}
+```
+
+Т.е. все ключи становятся опциональными. Они могут присутствовать или нет. Но других ключей присутствовать точно не может. Если они присутствуют - они правильного типа.
+
+Также иногда удобно использовать тип `Readonly<>`. Когда массив или объект помечены как `Readonly<>`, попытки внести в них изменения будут вызывать ошибку.
+
+```
+const names: Readonly<string[]> = ["Sophie", "Max"];
+// names.push("Manuel"); // error
+```
