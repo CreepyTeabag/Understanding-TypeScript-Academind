@@ -592,3 +592,39 @@ const names: Readonly<string[]> = ["Sophie", "Max"];
 ...
 "experimentalDecorators": true
 ```
+
+### 03. Working with Decorator Factories
+
+Обычный декоратор используется так:
+
+```
+function Logger(constructor: Function) {
+  console.log("Logging...");
+  console.log(constructor);
+}
+
+@Logger
+class Person {
+ ...
+}
+```
+
+Фабричный декоратор (Decorator factory) может принимать аргументы и используется так:
+
+```
+function Logger(logString: string) {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
+}
+
+@Logger("LOGGING - PERSON")
+class Person {
+  ...
+}
+```
+
+### 05. Adding Multiple Decorators
+
+Фабричные декораторы выполняются в том порядке, в котором они написаны. Но при этом сами декораторы, которые они возвращаются из фабричных декораторов, выполняются в порядке, обратном их написанию перед классом (снизу вверх).
