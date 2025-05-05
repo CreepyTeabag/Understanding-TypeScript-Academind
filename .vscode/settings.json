@@ -13,5 +13,6 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#3178c6",
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "cSpell.words": ["autobind", "validatable", "Validatable"]
 }
